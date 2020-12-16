@@ -27,18 +27,26 @@ app.get('/favoriteFood', (req, res) => {
     favoriteFood.create({name: 'Carolina', foodType: 'Spaghetti', origin: 'Italy'});
     res.send('Post completed');
 });
+app.post('/',(req,res)=>{
+    models.favoriteFood.create(req.body).then((favoriteFood)=>{
+        res.status(201).json({favoriteFood})
+    }).catch((err)=>{
+        res.send(err)
+    })
+})
+app.put('/:id',(req,res)=>{
+    res.send('hello')
+})
+
+app.delete('/:id',(req,res)=>{
+    res.send('delete')
+})
+
 app.delete('/delete', (req, res)=>{
     models.favoriteFood.deleteMany().then(()=>{
     console.log('Bye');
     })
 })
-
-// app.get('/comment', (req, res) => {
-//     const post2 = new BlogPost({ title: 'Cool post', body: 'Lets do something'});
-//     const myComment = { header: 'Cool', content: 'This is a cool post'}
-//     post2.comments.push(myComment);
-//     post2.save();
-// })
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
