@@ -28,7 +28,7 @@ app.get('/favoriteFood', (req, res) => {
     res.send('Post completed');
 });
 app.post('/',(req,res)=>{
-    models.favoriteFood.create(req.body).then((favoriteFood)=>{
+    models.favoriteFood.create(req.name).then((favoriteFood)=>{
         res.status(201).json({favoriteFood})
     }).catch((err)=>{
         res.send(err)
@@ -37,6 +37,14 @@ app.post('/',(req,res)=>{
 app.put('/:id',(req,res)=>{
     res.send('hello')
 })
+
+// app.put('/:id',(req,res)=>{
+//     mongoose.models.favoriteFood.put(req.calories). then((favoriteFood)=>{
+//         res.status(201).json({favoriteFood})
+//     }).catch((err)=>{
+//         res.send('hello')
+//     })
+// })
 
 app.delete('/:id',(req,res)=>{
     res.send('delete')
